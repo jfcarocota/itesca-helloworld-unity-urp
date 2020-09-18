@@ -3,19 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    [SerializeField]
-    TextMeshProUGUI textMesh;
 
-    [SerializeField]
-    float moveSpeed = 2f;
     [SerializeField]
     float jumpForce = 5f;
-
-    Animator anim;
-
-    int score;
 
     GameInputs gameInpunts;
 
@@ -30,10 +22,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     Transform rayTransform;
 
-    void Awake()
+    new void Awake()
     {
+        base.Awake();
         gameInpunts = new GameInputs();
-        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -66,22 +58,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         //movement 3d
-        Movement();
+        MoveForward();
     }
 
     void LateUpdate()
     {
         anim.SetFloat("movement", AxisMagnitudeAbs);
         anim.SetBool("ground", IsGrounding);
-    }
-
-    void Movement()
-    {
-        if(IsMoving)
-        {
-            transform.Translate( Vector3.forward * Time.deltaTime * moveSpeed);
-            transform.rotation = Quaternion.LookRotation(new Vector3(Axis.x, 0f, Axis.y));
-        }
     }
 
     /// <summary>
@@ -107,8 +90,8 @@ public class Player : MonoBehaviour
     {
         if(other.CompareTag("Collectable"))
         {
-            score++;
-            textMesh.text = $"Score: {score}";
+            Collectable collectable = other.GetComponent<Collectable>();
+            GameManager.instance.GetScore.AddPoints(collectable.Points);
             Destroy(other.gameObject);
         }   
     }
@@ -117,5 +100,14 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = rayColor;
         Gizmos.DrawRay(rayTransform.position, -transform.up * rayDistance);    
+    }
+
+    protected override void MoveForward()
+    {
+        if(IsMoving)
+        {
+            base.MoveForward();
+            transform.rotation = Quaternion.LookRotation(new Vector3(Axis.x, 0f, Axis.y));
+        }
     }
 }
