@@ -19,6 +19,8 @@ public class Villager : NPC
 
     bool isTalking = false;
 
+    bool onExit = false;
+
 
      void Start()
     {
@@ -81,6 +83,10 @@ public class Villager : NPC
 
         if(ActionAreaCollider)
         {
+            if(onExit)
+            {
+                onExit = false;
+            }
             //base.MoveForward();
             isTalking = true;
             anim.SetBool("walk", false);
@@ -89,6 +95,16 @@ public class Villager : NPC
         }
         else
         {
+            if(!onExit)
+            {
+                onExit = true;
+                SwapRotation();
+                if(!isWating)
+                {
+                    anim.SetBool("walk", true);
+                }
+                isTalking = false;
+            }
             GameManager.instance.GetDialogBox.Hide();
             if(!isWating)
             {

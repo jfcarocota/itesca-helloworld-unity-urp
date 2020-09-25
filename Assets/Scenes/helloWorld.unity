@@ -1121,7 +1121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100122, guid: b01a3f6cbfa877645ae1653f51bd4cbe, type: 3}
       propertyPath: m_Name
-      value: NPC
+      value: Villager
       objectReference: {fileID: 0}
     - target: {fileID: 100122, guid: b01a3f6cbfa877645ae1653f51bd4cbe, type: 3}
       propertyPath: m_Layer
@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  actionAreaRadius: 3
+  actionAreaRadius: 1.24
   actionAreaColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   layerDetection:
     serializedVersion: 2
