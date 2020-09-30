@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameDialogBox dialogBox;
 
+    [SerializeField]
+    CombatText combatText;
+
     void Awake()
     {
         if(!instance)
@@ -33,4 +36,6 @@ public class GameManager : MonoBehaviour
     public Score GetScore => score;
 
     public GameDialogBox GetDialogBox => dialogBox;
+
+    public CombatText GetCombat => combatText;
 }

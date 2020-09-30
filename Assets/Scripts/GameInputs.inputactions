@@ -20,6 +20,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "PassThrough",
+                    "id": "382a2d64-91de-45ef-8c33-517c3c87fb7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -284,6 +292,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Jump ",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69148663-09ef-41d9-9ea0-0fbff5919206",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "XBOX",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

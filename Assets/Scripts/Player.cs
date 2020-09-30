@@ -33,6 +33,7 @@ public class Player : Character
     void Start()
     {
         gameInpunts.Land.Jump.performed += _=> Jump();
+        gameInpunts.Land.Attack.performed += _=> Attack();
     }
 
     void Jump()
@@ -42,6 +43,11 @@ public class Player : Character
             anim.SetTrigger("jump");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+    }
+
+    void Attack()
+    {
+        anim.SetTrigger("attack");
     }
 
     void OnEnable()
