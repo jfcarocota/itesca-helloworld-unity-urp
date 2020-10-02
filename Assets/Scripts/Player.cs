@@ -22,11 +22,19 @@ public class Player : Character
     [SerializeField]
     Transform rayTransform;
 
+    AudioSource aud;
+    [SerializeField]
+    AudioClip footStepSFX;
+    [SerializeField]
+    float footStepSFXDelay;
+    float footStepSFXTimer;
+
     new void Awake()
     {
         base.Awake();
         gameInpunts = new GameInputs();
         rb = GetComponent<Rigidbody>();
+        aud = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -77,7 +85,7 @@ public class Player : Character
     /// Retunrs the axis with H input and V Input.
     /// </summary>
     /// <returns></returns>
-    Vector2 Axis => gameInpunts.Land.Move.ReadValue<Vector2>();
+    Vector2 Axis => gameInpunts.Land.Move.ReadValue<Vector2>().normalized;
 
     /// <summary>
     /// Check if player is moving with inputs H and V.
@@ -114,6 +122,16 @@ public class Player : Character
         {
             base.MoveForward();
             transform.rotation = Quaternion.LookRotation(new Vector3(Axis.x, 0f, Axis.y));
+            footStepSFXTimer += Time.deltaTime;
+            if(footStepSFXTimer >= footStepSFXDelay)
+            {
+                footStepSFXTimer = 0f;
+                aud.PlayOneShot(footStepSFX, 0.3f);
+            }
+        }
+        else
+        {
+            footStepSFXTimer = footStepSFXDelay;
         }
     }
 }

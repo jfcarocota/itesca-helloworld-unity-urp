@@ -40,6 +40,7 @@ public class Enemy : NPC
             if(GameManager.instance.GetCombat.IsInCombat)
             {
                 GameManager.instance.GetCombat.IsInCombat = false;
+                GameManager.instance.ResetBGAudio();
             }
         }
     }
