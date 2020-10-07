@@ -27,6 +27,7 @@ public class Enemy : NPC
             if(!GameManager.instance.GetCombat.IsInCombat)
             {
                 GameManager.instance.GetCombat.Show();
+                GameManager.instance.GetCombatPanel.Show();
                 GameManager.instance.GetCombat.IsInCombat = true;
             }
             //base.MoveForward();
@@ -40,6 +41,7 @@ public class Enemy : NPC
             if(GameManager.instance.GetCombat.IsInCombat)
             {
                 GameManager.instance.GetCombat.IsInCombat = false;
+                GameManager.instance.GetCombatPanel.Hide();
                 GameManager.instance.ResetBGAudio();
             }
         }

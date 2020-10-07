@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
 
     AudioSource aud;
 
+    [SerializeField]
+    CombatPanel combatPanel;
+
     void Awake()
     {
         if(!instance)
@@ -49,6 +52,8 @@ public class GameManager : MonoBehaviour
     public GameDialogBox GetDialogBox => dialogBox;
 
     public CombatText GetCombat => combatText;
+
+    public CombatPanel GetCombatPanel => combatPanel;
 
     public void StartCombatAudio()
     {
