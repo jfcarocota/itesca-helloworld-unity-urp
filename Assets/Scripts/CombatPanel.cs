@@ -13,7 +13,7 @@ public class CombatPanel : MonoBehaviour
 
     public void Show()
     {
-        anim.SetBool("show", true);
+        anim.SetBool("show", true);//show no existe bug
     }
 
     public void Hide()
